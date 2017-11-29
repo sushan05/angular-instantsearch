@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, Inject, PLATFORM_ID } from "@angular/core";
 import { connectMenu } from "instantsearch.js/es/connectors";
 import { noop, isFunction } from "lodash-es";
 
@@ -77,7 +77,10 @@ export class NgAisMenu extends BaseWidget {
       : this.state.items;
   }
 
-  constructor(searchInstance: NgAisInstance) {
+  constructor(
+    @Inject(PLATFORM_ID) public platformId: Object,
+    searchInstance: NgAisInstance
+  ) {
     super(searchInstance, "Menu");
   }
 
